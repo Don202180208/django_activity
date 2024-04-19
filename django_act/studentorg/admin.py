@@ -32,4 +32,11 @@ class OrgMemberAdmin(admin.ModelAdmin):
     get_middlename.short_description = "Middle Name"
     get_program.short_description = "Program"
 
+    def get_member_program(self, obj):
+        try:
+            member = Student.objects.get(id=obj.student_id)
+            return member.program
+        except  Student.DoesNotExist:
+            return None
+
 # Register your models here.
